@@ -46,7 +46,9 @@ You should see 170+ passing tests.
 
 ## 3. Configuration via `.env`
 
-AHF v2 is configured entirely via environment variables and `.env` (no complex kickstarter scripts).
+AHF v2 is configured entirely via environment variables and `.env` (no kickstarter scripts).
+
+> **Important:** Environment variable names match field names exactly (case-insensitive). Do NOT use an `AHF_` prefix — pydantic-settings loads them directly.
 
 Key settings in `.env`:
 
@@ -66,9 +68,9 @@ MAX_DRAWDOWN_PCT=0.15
 MAX_LOSS_PCT=0.30
 KELLY_FRACTION=0.5
 
-# Pipeline tuning
-BUY_THRESHOLD=0.05
-SELL_THRESHOLD=-0.05
+# Pipeline decision thresholds
+BUY_THRESHOLD=0.1
+SELL_THRESHOLD=-0.1
 CONFIDENCE_FLOOR=0.0
 
 # API Keys (Optional for PAPER trading, Required for LIVE or LLM ensemble)
@@ -89,29 +91,29 @@ Paper trading uses real market feeds with simulated in-memory order execution (`
 # Using CLI entrypoint
 uv run ahf-trade
 
-# Or override parameters inline
-AHF_SYMBOL=ETHUSDT AHF_PIPELINE_CONFIG=configs/pipeline.multi_signal.json uv run ahf-trade
+# Or override parameters inline (no AHF_ prefix)
+SYMBOL=ETHUSDT PIPELINE_CONFIG=configs/pipeline.multi_signal.json uv run ahf-trade
 ```
 
 ### Backtesting with Replay Pipeline
 Replay recorded signals through the risk engine and order executor:
 
 ```bash
-AHF_PIPELINE_CONFIG=configs/pipeline.replay.json uv run ahf-backtest
+PIPELINE_CONFIG=configs/pipeline.replay.json uv run ahf-backtest
 ```
 
 ### RL Agent Training
 Train the PPO reinforcement learning agent with the Kalman Filter environment:
 
 ```bash
-AHF_SYMBOL=BTCUSDT AHF_STRATEGY=double_kf uv run ahf-train
+SYMBOL=BTCUSDT STRATEGY=double_kf uv run ahf-train
 ```
 
 ---
 
 ## 5. Running with Docker
 
-You can run the entire trading stack without installing Python locally:
+Run the entire trading stack without a local Python environment:
 
 ```bash
 # Start paper trading bot
