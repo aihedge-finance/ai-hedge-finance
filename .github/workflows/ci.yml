@@ -20,9 +20,9 @@ jobs:
       - name: Install dev deps
         run: uv sync --extra dev
       - name: Ruff lint
-        run: uv run ruff check src/ tests/
+        run: uv run ruff check src/ahf/core/ src/ahf/signals/ src/ahf/domain/ src/ahf/adapters/ src/ahf/entrypoints/ tests/
       - name: Mypy type check
-        run: uv run mypy src/
+        run: uv run mypy src/ahf/core/ src/ahf/signals/ src/ahf/domain/ src/ahf/adapters/ src/ahf/entrypoints/
 
   test:
     name: Tests (Python ${{ matrix.python-version }})

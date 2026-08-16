@@ -33,6 +33,13 @@ rl = [
     "loguru>=0.7",
     "psutil>=5.9",
     "click>=8.1",
+    # Additional deps required by ported v1 RL code
+    "pytz>=2023.3",
+    "tqdm>=4.65",
+    "PyYAML>=6.0",
+    "yfinance>=0.2",
+    "statsmodels>=0.14",
+    "apprise>=1.7",
 ]
 exchange = [
     "python-binance>=1.0.19",

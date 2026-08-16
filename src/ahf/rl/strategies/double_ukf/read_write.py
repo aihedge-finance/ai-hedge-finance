@@ -37,7 +37,7 @@ def load_data(trade_args, tech_args, logger):
 
         if dt_idx[0] > dt.datetime.strptime(trade_args["form_start"], "%Y-%m-%d"):
             logger.warning(f"tech data has earlier form_start {dt_idx[0]}"
-                                f" expect {trade_args["form_start"]} from trade_args")
+                                f" expect {trade_args['form_start']} from trade_args")
 
         tech_ary = tech_df.loc[:, ~tech_df.columns.str.contains("market")]
         drop_cols = ["tic", "open", "close", "high", "low", "exchange", "symbol", "interval"]

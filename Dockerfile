@@ -25,15 +25,15 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 # Copy dependency files
 COPY pyproject.toml uv.lock* ./
 
-# Install dependencies (no dev extras, no editable install yet)
-RUN uv sync --frozen --no-dev --no-install-project
+# Install dependencies (rl extra required for model inference)
+RUN uv sync --frozen --no-dev --extra rl --no-install-project
 
 # Copy source
 COPY src/ ./src/
 COPY configs/ ./configs/
 
 # Install project
-RUN uv sync --frozen --no-dev
+RUN uv sync --frozen --no-dev --extra rl
 
 # ── Stage 2: runtime ──────────────────────────────────────────────────────────
 FROM python:${PYTHON_VERSION}-slim AS runtime
