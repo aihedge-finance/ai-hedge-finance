@@ -7,6 +7,7 @@
 [![uv](https://img.shields.io/badge/managed%20by-uv-7C3AED)](https://github.com/astral-sh/uv)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
 [![Type Checked: mypy](https://img.shields.io/badge/type%20checked-mypy-blue.svg)](https://mypy-lang.org/)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ---
 
@@ -130,4 +131,4 @@ docker compose logs -f trade
 
 ## 📄 License
 
-Proprietary — All rights reserved.
+This project is licensed under the Apache 2.0 License — see the [LICENSE](LICENSE) file for details.
