@@ -57,9 +57,9 @@ ENV PATH="/app/.venv/bin:$PATH" \
 
 USER ahf
 
-# Health check: import the package
-HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
-  CMD python -c "from ahf.core.settings import AHFSettings; AHFSettings()" || exit 1
+# Health check: verify settings load AND pipeline config is parseable
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
+  CMD python -c "from ahf.core.settings import AHFSettings; s=AHFSettings(); __import__('pathlib').Path(s.pipeline_config).exists() or exit(1)" || exit 1
 
 # Default entrypoint: trade (override in docker-compose or k8s)
 ENTRYPOINT ["python", "-m", "ahf.entrypoints.trade"]

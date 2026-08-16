@@ -2,7 +2,7 @@
 
 > Production-grade Multi-Signal Trading System: Deep Reinforcement Learning (PPO) + Kalman Filter Alpha + LLM Ensemble on a 2-Layer Hierarchical Signal Architecture.
 
-[![CI](https://github.com/HamiltonAIArtIO/ai-hedge-finance/actions/workflows/ci.yml/badge.svg)](https://github.com/HamiltonAIArtIO/ai-hedge-finance/actions)
+[![CI](https://github.com/aihedge-finance/ai-hedge-finance/actions/workflows/ci.yml/badge.svg)](https://github.com/aihedge-finance/ai-hedge-finance/actions)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-blue.svg)](https://www.python.org/downloads/)
 [![uv](https://img.shields.io/badge/managed%20by-uv-7C3AED)](https://github.com/astral-sh/uv)
 [![Code style: ruff](https://img.shields.io/badge/code%20style-ruff-000000.svg)](https://github.com/astral-sh/ruff)
@@ -46,7 +46,7 @@ For full details, see the [Architecture Documentation](docs/architecture/ARCHITE
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 # Clone and setup
-git clone https://github.com/HamiltonAIArtIO/ai-hedge-finance.git
+git clone https://github.com/aihedge-finance/ai-hedge-finance.git
 cd ai-hedge-finance
 cp .env.example .env
 

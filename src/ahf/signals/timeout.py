@@ -12,13 +12,14 @@ import logging
 import threading
 from typing import Optional
 
+from ahf.signals.signal_producer import SignalProducer
 from ahf.signals.signal_types import SignalOutput
 
 logger = logging.getLogger(__name__)
 
 
 def produce_with_timeout(
-    producer,
+    producer: "SignalProducer",
     market_data: dict,
     context: dict,
     timeout_seconds: float,

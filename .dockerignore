@@ -1,0 +1,45 @@
+# Development environment
+.venv/
+.env
+.env.*
+!.env.example
+
+# Version control
+.git/
+.gitignore
+
+# Test and dev artifacts
+tests/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+*.cover
+.coverage
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Data — models and logs are mounted at runtime via docker-compose volumes
+data/
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docs — not needed in runtime image
+docs/
+*.md
+!README.md
+
+# CI/CD
+.github/

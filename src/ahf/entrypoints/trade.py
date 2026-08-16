@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 _SHUTDOWN = False
 
 
-def _handle_sigterm(signum, frame):
+def _handle_sigterm(signum: int, frame: object) -> None:
     global _SHUTDOWN
     logger.info("Received SIGTERM — graceful shutdown initiated")
     _SHUTDOWN = True
