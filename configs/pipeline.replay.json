@@ -1,0 +1,31 @@
+{
+  "producers": [
+    {
+      "id": "replay_rl",
+      "type": "replay",
+      "timeout_seconds": 1.0,
+      "config": {
+        "audit_log_path": "data/logs/signal_audit.jsonl",
+        "producer_id": "rl_ppo"
+      }
+    },
+    {
+      "id": "replay_tech",
+      "type": "replay",
+      "timeout_seconds": 1.0,
+      "config": {
+        "audit_log_path": "data/logs/signal_audit.jsonl",
+        "producer_id": "tech_kf"
+      }
+    }
+  ],
+  "aggregator": {
+    "type": "weighted_vote",
+    "config": {}
+  },
+  "settings": {
+    "min_valid_signals": 1,
+    "audit_log_enabled": false,
+    "audit_log_path": "data/logs/replay_audit.jsonl"
+  }
+}

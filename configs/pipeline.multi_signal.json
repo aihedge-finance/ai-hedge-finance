@@ -1,0 +1,45 @@
+{
+  "producers": [
+    {
+      "id": "rl_ppo",
+      "type": "rl",
+      "timeout_seconds": 5.0,
+      "config": {
+        "model_path": "data/models/pod_000000",
+        "agent": "ppo"
+      }
+    },
+    {
+      "id": "tech_kf",
+      "type": "tech_indicator",
+      "timeout_seconds": 2.0,
+      "config": {
+        "strategy": "double_kf"
+      }
+    },
+    {
+      "id": "llm_gemini",
+      "type": "llm",
+      "timeout_seconds": 15.0,
+      "config": {
+        "model": "gemini-2.0-flash",
+        "client_key": "gemini-2.0-flash"
+      }
+    }
+  ],
+  "aggregator": {
+    "type": "fixed_weight",
+    "config": {
+      "weights": {
+        "rl_ppo":      0.50,
+        "tech_kf":     0.30,
+        "llm_gemini":  0.20
+      }
+    }
+  },
+  "settings": {
+    "min_valid_signals": 2,
+    "audit_log_enabled": true,
+    "audit_log_path": "data/logs/signal_audit.jsonl"
+  }
+}

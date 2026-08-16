@@ -1,0 +1,22 @@
+{
+  "producers": [
+    {
+      "id": "rl_ppo",
+      "type": "rl",
+      "timeout_seconds": 5.0,
+      "config": {
+        "model_path": "data/models/pod_000000",
+        "agent": "ppo"
+      }
+    }
+  ],
+  "aggregator": {
+    "type": "weighted_vote",
+    "config": {}
+  },
+  "settings": {
+    "min_valid_signals": 1,
+    "audit_log_enabled": true,
+    "audit_log_path": "data/logs/signal_audit.jsonl"
+  }
+}

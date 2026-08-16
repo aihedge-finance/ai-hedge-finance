@@ -1,0 +1,43 @@
+{
+  "producers": [
+    {
+      "id": "llm_gemini",
+      "type": "llm",
+      "timeout_seconds": 15.0,
+      "config": {
+        "model": "gemini-2.0-flash",
+        "client_key": "gemini-2.0-flash"
+      }
+    },
+    {
+      "id": "llm_gpt4o",
+      "type": "llm",
+      "timeout_seconds": 15.0,
+      "config": {
+        "model": "gpt-4o",
+        "client_key": "gpt-4o"
+      }
+    },
+    {
+      "id": "llm_claude",
+      "type": "llm",
+      "timeout_seconds": 15.0,
+      "config": {
+        "model": "claude-sonnet-4",
+        "client_key": "claude-sonnet-4"
+      }
+    }
+  ],
+  "aggregator": {
+    "type": "meta_llm",
+    "config": {
+      "client_key": "gemini-2.0-flash",
+      "model": "gemini-2.0-flash"
+    }
+  },
+  "settings": {
+    "min_valid_signals": 2,
+    "audit_log_enabled": true,
+    "audit_log_path": "data/logs/signal_audit.jsonl"
+  }
+}
