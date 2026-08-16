@@ -125,3 +125,47 @@ def get_settings() -> Settings:
     modifies environment variables.
     """
     return Settings()
+
+
+# ---------------------------------------------------------------------------
+# Convenience alias + extended settings for entrypoints
+# ---------------------------------------------------------------------------
+
+
+class AHFSettings(Settings):
+    """Extended settings for entrypoints. Adds fields used by the trade loop."""
+
+    # Trading pair
+    symbol: str = "BTCUSDT"
+
+    # Operating mode (LIVE | PAPER | SIMULATION)
+    trading_mode: str = "PAPER"
+
+    # Signal pipeline
+    min_valid_signals: int = 1
+    buy_threshold: float = 0.1
+    sell_threshold: float = -0.1
+    confidence_floor: float = 0.0
+
+    # Risk management
+    max_drawdown_pct: float = 0.15
+    max_loss_pct: float = 0.30
+    kelly_fraction: float = 0.5
+    initial_capital: float = 1000.0
+
+    # Trade loop
+    step_interval_seconds: float = 1.0
+    halt_on_error: bool = False
+
+    # Audit log
+    audit_log_enabled: bool = True
+    audit_log_path: str = "data/logs/signal_audit.jsonl"
+
+    # Logging (alias for entrypoints that use log_level)
+    @property
+    def log_level(self) -> str:
+        return self.loglevel
+
+    # Strategy / RL
+    strategy: str = "double_kf"
+    pod_id: str = "pod_000000"

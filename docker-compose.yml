@@ -1,0 +1,83 @@
+version: "3.9"
+
+# ──────────────────────────────────────────────────────────────────────────────
+# AI Hedge Finance v2 — Docker Compose
+#
+# Modes controlled by TRADING_MODE env var:
+#   PAPER (default): simulated orders, real market data
+#   LIVE: real orders (requires Binance API keys)
+#   SIMULATION: backtesting mode
+#
+# Usage:
+#   docker compose --env-file .env up trade
+#   docker compose --env-file .env up train
+# ──────────────────────────────────────────────────────────────────────────────
+
+x-common-env: &common-env
+  TRADING_MODE: ${TRADING_MODE:-PAPER}
+  SYMBOL: ${SYMBOL:-BTCUSDT}
+  PIPELINE_CONFIG: ${PIPELINE_CONFIG:-configs/pipeline.json}
+  BINANCE_API_KEY: ${BINANCE_API_KEY:-}
+  BINANCE_API_SECRET: ${BINANCE_API_SECRET:-}
+  GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+  OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+  MAX_DRAWDOWN_PCT: ${MAX_DRAWDOWN_PCT:-0.15}
+  MAX_LOSS_PCT: ${MAX_LOSS_PCT:-0.30}
+  INITIAL_CAPITAL: ${INITIAL_CAPITAL:-1000.0}
+  AUDIT_LOG_ENABLED: "true"
+  AUDIT_LOG_PATH: "/app/data/logs/signal_audit.jsonl"
+
+x-volumes: &common-volumes
+  - ./data:/app/data
+  - ./configs:/app/configs:ro
+
+services:
+
+  trade:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: ai-hedge-finance:latest
+    container_name: ahf-trade
+    restart: unless-stopped
+    environment:
+      <<: *common-env
+    volumes: *common-volumes
+    command: []  # Uses Dockerfile ENTRYPOINT (ahf.entrypoints.trade)
+    healthcheck:
+      test: ["CMD", "python", "-c", "from ahf.core.settings import AHFSettings; AHFSettings()"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  train:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: ai-hedge-finance:latest
+    container_name: ahf-train
+    restart: "no"  # Training is a one-shot job
+    environment:
+      <<: *common-env
+      TRADING_MODE: SIMULATION
+      STRATEGY: ${STRATEGY:-double_kf}
+      POD_ID: ${POD_ID:-pod_000000}
+    volumes: *common-volumes
+    command: ["python", "-m", "ahf.entrypoints.train"]
+
+  backtest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: ai-hedge-finance:latest
+    container_name: ahf-backtest
+    restart: "no"
+    environment:
+      <<: *common-env
+      TRADING_MODE: SIMULATION
+      PIPELINE_CONFIG: configs/pipeline.replay.json
+    volumes: *common-volumes
+    command: ["python", "-m", "ahf.entrypoints.backtest"]

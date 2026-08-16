@@ -56,10 +56,9 @@ dev = [
 all = ["ahf[rl,exchange,tuning,notification,dev]"]
 
 [project.scripts]
-ahf-trade    = "ahf.entrypoints.tradebot:main"
-ahf-train    = "ahf.entrypoints.trainer:main"
-ahf-backtest = "ahf.entrypoints.backtester:main"
-ahf-tune     = "ahf.entrypoints.tuner:main"
+ahf-trade    = "ahf.entrypoints.trade:main"
+ahf-train    = "ahf.entrypoints.train:main"
+ahf-backtest = "ahf.entrypoints.backtest:main"
 
 [build-system]
 requires = ["hatchling"]
