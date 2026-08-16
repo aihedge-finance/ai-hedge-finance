@@ -1,0 +1,11 @@
+{
+    "symbol": "^CMC200",
+    "exchange": "WorldIndex",
+    "price_data_path": "./appData/trainData_crypto/prices_v3.parquet",
+    "tech_data_path": "./appData/trainData_crypto/diewalkure_v1.parquet",
+    "kf_data_path": "./appData/trainData_crypto/KF_theta",
+    "interval_base": "1h",
+    "trade_interval": "1d",
+    "form_start": "2015-09-01",
+    "form_end": "2023-03-09"
+}

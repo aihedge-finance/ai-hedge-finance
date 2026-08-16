@@ -1,0 +1,26 @@
+{
+  "tech_list": [
+            "ema", "rsi", "max_rsi", "macd_bar_norm", "macd"
+        ],
+  "silo_size": 1,
+  "ema_time_period": 150,
+  "rsi_long_level": 0.55,
+  "rsi_short_level": 0.5,
+  "rsi_long_exit_level": 0.55,
+  "rsi_short_exit_level": 0.1,
+  "rsi_long_loss_level": 0.5,
+  "rsi_short_loss_level": 0.65,
+  "macd_price_multi": 1000,
+  "macd_bar_long_level": 0,
+  "macd_bar_short_level": 0,
+  "macd_bar_long_exit_level": 10,
+  "macd_bar_short_exit_level": 10,
+  "rsi_time_period": 6,
+  "macd_fast_period": 12,
+  "macd_slow_period": 26,
+  "macd_signal_period": 9,
+  "macd_lookback": 2,
+  "entry_rule": "ema_macd_rsi",
+  "loss_rule": "ema_macd_rsi",
+  "exit_rule": "trailing_rsi"
+}

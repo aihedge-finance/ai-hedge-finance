@@ -1,0 +1,24 @@
+{
+  "tech_list": [
+            "change",
+            "price_alfa_001",
+            "price_alfa_0001"
+        ],
+  "long_level": 0.25,
+  "short_level":-0.25,
+  "long_exit_level": 0.0,
+  "short_exit_level": 0.0,
+  "buy_obs_cov": 0.5,
+  "buy_sd_delta": 1e-6,
+  "buy_sd_obs_cov": 0.1,
+  "sell_obs_cov": 0.5,
+  "sell_sd_delta": 1e-6,
+  "sell_sd_obs_cov": 0.1,
+  "buy_delta": 0.999,
+  "sell_delta": 0.7,
+  "exit_rule": "sell_tracer",
+  "buy_delta_limit_upper": 0.9999,
+  "buy_delta_limit_lower": 1e-09,
+  "sell_delta_limit_upper": 0.9999,
+  "sell_delta_limit_lower": 1e-09
+}

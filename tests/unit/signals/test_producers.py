@@ -33,9 +33,19 @@ class TestRLProducer:
         p = RLSignalProducer.from_config("rl_ppo", {}, {})
         assert p.name == "rl_ppo"
 
-    def test_health_check_passes(self):
-        p = RLSignalProducer("test", "")
-        p.health_check()  # Should not raise
+    def test_health_check_no_agent_raises(self):
+        """Real RL producer raises if agent not loaded."""
+        import pytest
+        p = RLSignalProducer("test")
+        with pytest.raises(RuntimeError, match="RL agent not loaded"):
+            p.health_check()
+
+    def test_health_check_no_env_raises(self):
+        """Real RL producer raises if env not set."""
+        import pytest
+        p = RLSignalProducer("test", agent=object())  # agent present, no env
+        with pytest.raises(RuntimeError, match="RL env not set"):
+            p.health_check()
 
 
 # ---------------------------------------------------------------------------

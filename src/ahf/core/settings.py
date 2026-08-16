@@ -10,7 +10,7 @@ from functools import lru_cache
 from pydantic import field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from ahf.core.enums import AppEnv, NodeEnv
+from ahf.core.enums import DeployEnv, NodeEnv
 
 
 class Settings(BaseSettings):
@@ -31,7 +31,7 @@ class Settings(BaseSettings):
     # Application
     # ------------------------------------------------------------------
     node_env: NodeEnv = NodeEnv.DEV
-    deploy_env: AppEnv = AppEnv.DEV
+    deploy_env: DeployEnv = DeployEnv.DEV
     debug: bool = False
     loglevel: str = "INFO"
 

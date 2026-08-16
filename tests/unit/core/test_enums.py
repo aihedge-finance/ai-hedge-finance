@@ -1,5 +1,5 @@
 """Tests for core/enums.py."""
-from ahf.core.enums import AppEnv, NodeEnv, SaasEnv, TradeAction, TradingMode
+from ahf.core.enums import AppEnv, DeployEnv, NodeEnv, SaasEnv, TradeAction, TradingMode
 
 
 def test_trade_action_values():
@@ -18,9 +18,11 @@ def test_trading_mode_values():
     assert TradingMode.SIMULATION == "SIMULATION"
 
 
-def test_app_env_values():
-    assert AppEnv.DEV == "DEV"
-    assert AppEnv.PRODUCTION == "PRODUCTION"
+def test_deploy_env_values():
+    assert DeployEnv.DEV == "DEV"
+    assert DeployEnv.PRODUCTION == "PRODUCTION"
+    assert AppEnv.TRAIN == "TRAIN"
+    assert AppEnv.TRADE == "TRADE"
 
 
 def test_node_env_docker():
