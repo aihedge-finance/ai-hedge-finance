@@ -1,4 +1,4 @@
-# Option A(b): Lightweight 2-Layer Hierarchical Signal Architecture
+# Lightweight 2-Layer Hierarchical Signal Architecture
 
 **Base**: Option A (Domain Module Extraction) + a minimal 2-layer signal hierarchy  
 **Effort**: ~2-3 weeks (1 week beyond Option A)  
