@@ -114,6 +114,29 @@ docker compose logs -f trade
 
 ---
 
+## Why AI Hedge Finance is different
+Most open-source “AI hedge fund” projects are educational multi-agent simulations. They role-play famous investors (Buffett, Graham, Munger, etc.) with LLMs, generate buy/hold/sell opinions, and stop there. They are excellent for learning and exploration. They are not built for production signal generation, risk control, or auditable execution.
+AI Hedge Finance was designed from day one as a production-grade multi-signal trading system:
+
+| Aspect | Typical educational AI hedge fund | AI Hedge Finance (this project) |
+|--------|-----------------------------------|---------------------------------|
+| Core architecture | Flat multi-agent LLM debate | **2-layer hierarchical signals**: isolated Producers → Aggregator → Risk Gate → Execution |
+| Alpha generation | LLM persona prompts | **Deep RL (PPO)** + **Kalman Filter** features + technical + rule-based + optional LLM ensemble |
+| Risk management | Soft LLM “risk manager” opinion | **Deterministic, rule-based Risk Gate** (MaxDrawdown, TotalLoss, Kelly, etc.) that can hard-block trades |
+| Auditability | Agent chat logs (if any) | **Append-only `signal_audit.jsonl`** — every signal, confidence, risk decision, and order is replayable |
+| Execution path | None (or toy paper trade) | Clean `OrderExecutor` → exchange adapter interface, Docker-first paper/live workflows |
+| Engineering posture | Prototype / research demo | Production-oriented: `uv`, typed contracts, 170+ tests, CI, migration path from private v1 |
+| License & intent | Usually MIT, educational only | Apache 2.0, built for real signal pipelines |
+
+In short:
+
+- Educational projects ask: *“What would Buffett say about AAPL today?”*
+- This project asks: *“Can I generate, ensemble, risk-gate, and audit a continuous stream of tradable signals with measurable edge?”*
+
+If you want a fun way to explore investor philosophies with LLMs, the popular educational repositories are excellent.  
+If you need a hierarchical, RL-augmented, risk-controlled, fully auditable signal system you can actually run and extend, you’re in the right place.
+
+
 ## 🛠 Project Status
 
 | Phase | Milestone | Status |
